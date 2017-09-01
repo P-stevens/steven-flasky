@@ -4,6 +4,7 @@ from ..models import User
 from ..email import send_email
 from . import main
 from .forms import NameForm
+from . import auth
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -25,3 +26,7 @@ def index():
     return render_template('index.html',
                            form=form, name=session.get('name'),
                            known=session.get('known', False))
+
+@auth.route('/login')
+def login():
+    return render_template('auth/login.html')
